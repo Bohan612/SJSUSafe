@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.RippleDrawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.v4.app.FragmentActivity;
@@ -201,22 +202,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .position(SthGarage)
                 .title("South Garage").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
 
+         mMap.addMarker(new MarkerOptions()
+               .position(ArtBuilding)
+                .title("Art Building").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
 
 
-
-
-
-
-
-
-
-
-
-        // mMap.addMarker(new MarkerOptions()
-         //       .position(ArtBuilding)
-           //     .title("Art Building").icon(vectorToBitmap(R.drawable.ic_menu_camera, Color.parseColor("#db4437"))));
-
-
+        
 
 
 
