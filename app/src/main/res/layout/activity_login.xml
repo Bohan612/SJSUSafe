@@ -86,6 +86,19 @@
                 android:text="Register" />
         </LinearLayout>
 
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60dp"
+            android:layout_marginLeft="100dp"
+            app:srcCompat="@drawable/sjsu"
+            tools:layout_editor_absoluteX="82dp"
+            tools:layout_editor_absoluteY="-81dp"
+            android:layout_gravity="center_horizontal"/>
+
     </LinearLayout>
+
+
 
 </android.support.constraint.ConstraintLayout>

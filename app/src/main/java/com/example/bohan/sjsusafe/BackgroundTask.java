@@ -1,13 +1,16 @@
 package com.example.bohan.sjsusafe;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.StringBuilderPrinter;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -29,7 +32,7 @@ public class BackgroundTask extends AsyncTask<String,Void,String>{
     @Override
     protected String doInBackground(String... params) {
         String regurl="http://10.0.2.2/register.php";
-    //   String loginurl="http://127.0.0.1/login.php";
+        String loginurl="http://10.0.2.2/login.php";
         String method=params[0];
         if(method.equals("register")){
 
@@ -70,6 +73,47 @@ public class BackgroundTask extends AsyncTask<String,Void,String>{
             }
 
         }
+        else if(method.equals("login")){
+            String username=params[1];
+            String password=params[2];
+            try {
+                URL url= new URL(loginurl);
+                HttpURLConnection httpURLConnection=(HttpURLConnection)url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                httpURLConnection.setDoInput(true);
+                OutputStream os=httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
+                String data= URLEncoder.encode("UserName","UTF-8") + "=" + URLEncoder.encode(username,"UTF-8")+"&"+
+                        URLEncoder.encode("Password","UTF-8") + "=" + URLEncoder.encode(password,"UTF-8");
+
+                bufferedWriter.write(data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                os.close();
+
+                InputStream is=httpURLConnection.getInputStream();
+                BufferedReader bufferedReader= new BufferedReader(new InputStreamReader(is,"iso-8859-1"));
+                String response="";
+                String line="";
+                while((line=bufferedReader.readLine())!=null){
+                    response+=line;
+
+                }
+                bufferedReader.close();
+                is.close();
+                httpURLConnection.disconnect();
+                return response;
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+
+        }
         return null;
     }
 
@@ -85,6 +129,11 @@ public class BackgroundTask extends AsyncTask<String,Void,String>{
 
     @Override
     protected void onPostExecute(String result) {
-        Toast.makeText(ctx,result,Toast.LENGTH_LONG).show();
+        if(result.equals("Registration successful")) {
+            Toast.makeText(ctx, result, Toast.LENGTH_LONG).show();
+        }
+        else{
+            Toast.makeText(ctx, result, Toast.LENGTH_LONG).show();
+        }
     }
 }

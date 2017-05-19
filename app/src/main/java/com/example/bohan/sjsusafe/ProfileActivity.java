@@ -30,9 +30,7 @@ public class ProfileActivity extends AppCompatActivity {
     public void register(View view){
         if(etUsername!=null) {
            username = etUsername.getText().toString();
-
-       }
-
+        }
         if(etPassword!=null) {
             password = etPassword.getText().toString();
         }

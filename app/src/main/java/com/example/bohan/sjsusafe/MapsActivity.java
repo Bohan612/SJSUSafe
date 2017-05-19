@@ -106,7 +106,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mMap.addMarker(new MarkerOptions().position(SJSU).title("Marker in San Jose State University"));
         // Zoom level 20 -Street view
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(SJSU,15));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(SJSU,17));
 
 
 
@@ -212,7 +212,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
          mMap.addMarker(new MarkerOptions()
                .position(ArtBuilding)
-                .title("12/07/16 Sexual Battery").icon(BitmapDescriptorFactory.fromResource(R.drawable.sexual)));
+                .title("12/07/16 Sexual Battery").icon(BitmapDescriptorFactory.fromResource(R.drawable.sexualasssault)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(new LatLng(37.332955, -121.880967))
@@ -222,48 +222,52 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .position(new LatLng(37.333842, -121.881262))
                 .title("01/06/16 Vehicles Burglaries").icon(BitmapDescriptorFactory.fromResource(R.drawable.robbery)));
         mMap.addMarker(new MarkerOptions()
-                .position(ArtBuilding)
-                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+                .position(new LatLng(37.334013,-121.878312))
+                .title("05/03/15 Dinning Commons").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+
         mMap.addMarker(new MarkerOptions()
-                .position(ArtBuilding)
-                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+                .position(new LatLng(37.337041,-121.87976))
+                .title("05/03/16 Fire").icon(BitmapDescriptorFactory.fromResource(R.drawable.fire)));
+
         mMap.addMarker(new MarkerOptions()
-                .position(ArtBuilding)
-                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+                .position(new LatLng(37.336457,-121.878725))
+                .title("18/04/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+
+
         mMap.addMarker(new MarkerOptions()
-                .position(ArtBuilding)
-                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+                .position(new LatLng(37.335493,-121.87976))
+                .title("12/07/16 Chemical hazard").icon(BitmapDescriptorFactory.fromResource(R.drawable.hazard)));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(37.336453,-121.879556))
+                .title("01/07/16 Laptop Theft ").icon(BitmapDescriptorFactory.fromResource(R.drawable.robbery)));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(37.335131,-121.880125))
+                .title("04/02/16 ").icon(BitmapDescriptorFactory.fromResource(R.drawable.shooting)));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(37.336342,-121.882292))
+                .title("07/07/12 Vandalism").icon(BitmapDescriptorFactory.fromResource(R.drawable.vandalism)));
+        mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(37.336291,-121.883751))
+                .title("02/06/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(37.332443,-121.8816648))
+                .title("10/07/15 Robbery from an old lady").icon(BitmapDescriptorFactory.fromResource(R.drawable.robbery)));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(37.332861,-121.881242))
+                .title("06/07/15 Sexual battery").icon(BitmapDescriptorFactory.fromResource(R.drawable.sexualasssault)));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(37.332712,-121.88182))
+                .title("08/04/15 Sexual assault").icon(BitmapDescriptorFactory.fromResource(R.drawable.assault)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(ArtBuilding)
-                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
-
-        mMap.addMarker(new MarkerOptions()
-                .position(ArtBuilding)
-                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
-
-        mMap.addMarker(new MarkerOptions()
-                .position(ArtBuilding)
-                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
-        mMap.addMarker(new MarkerOptions()
-                .position(ArtBuilding)
-                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
-
-        mMap.addMarker(new MarkerOptions()
-                .position(ArtBuilding)
-                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
-
-        mMap.addMarker(new MarkerOptions()
-                .position(ArtBuilding)
-                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
-
-        mMap.addMarker(new MarkerOptions()
-                .position(ArtBuilding)
-                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
-
-        mMap.addMarker(new MarkerOptions()
-                .position(ArtBuilding)
-                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+                .title("01/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(ArtBuilding)
