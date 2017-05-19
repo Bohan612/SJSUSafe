@@ -112,108 +112,198 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mMap.addMarker(new MarkerOptions()
                 .position(ArtBuilding)
-                .title("Department of Art").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                .title("Department of Art").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
         mMap.addMarker(new MarkerOptions()
                 .position(ADM)
-                .title("Administration").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                .title("Administration").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(StudentUnion)
-                .title("Student Union").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                .title("Student Union").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(MLK)
-                .title("Martin Luther King Library").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                .title("Martin Luther King Library").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(ASPrint)
-                .title("Associated Student Print Shop").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                .title("Associated Student Print Shop").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
         mMap.addMarker(new MarkerOptions()
                 .position(ClarkHall)
-                .title("Clark Hall").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                .title("Clark Hall").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
         mMap.addMarker(new MarkerOptions()
                 .position(Music)
-                .title("The school of Music and Dance").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                .title("The school of Music and Dance").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
         mMap.addMarker(new MarkerOptions()
                 .position(EventCenter)
-                .title("Event Center").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                .title("Event Center").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
         mMap.addMarker(new MarkerOptions()
                 .position(VillageMarket)
-                .title("Village Market I").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                .title("Village Market I").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
         mMap.addMarker(new MarkerOptions()
                 .position(DC)
-                .title("Dinning commons").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                .title("Dinning commons").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
         mMap.addMarker(new MarkerOptions()
                 .position(Starbucks)
-                .title("StarBucks").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                .title("StarBucks").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
         mMap.addMarker(new MarkerOptions()
                 .position(BBC)
-                .title("Boccardo Business Center").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                .title("Boccardo Business Center").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
         mMap.addMarker(new MarkerOptions()
                 .position(CareerCenter)
-                .title("Career Center").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                .title("Career Center").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
         mMap.addMarker(new MarkerOptions()
                 .position(Mech)
-                .title("Building of Engineering").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                .title("Building of Engineering").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
         mMap.addMarker(new MarkerOptions()
                 .position(WellnessCenter)
-                .title("Wellness Center").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                .title("Wellness Center").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
 
 
         mMap.addMarker(new MarkerOptions()
                 .position(CampusVillageA)
-                .title("Campus Village A").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                .title("Campus Village A").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(SpartanMemorial)
-                .title("Spartan Memorial").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                .title("Spartan Memorial").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(AS)
-                .title("Associated Students").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                .title("Associated Students").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(Morris)
-                .title("Morris Dalley Auditorium").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                .title("Morris Dalley Auditorium").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
 
 
         mMap.addMarker(new MarkerOptions()
                 .position(Lucas)
-                .title("Lucas College and Graduate School of Business").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                .title("Lucas College and Graduate School of Business").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(McQuire)
-                .title("MacQuirrie Hall").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                .title("MacQuirrie Hall").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
 
 
         mMap.addMarker(new MarkerOptions()
                 .position(JoeWest)
-                .title("JoeWest").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                .title("JoeWest").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(PoliceDepartment)
-                .title("University Police Department").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                .title("University Police Department").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(Chem)
-                .title("Department of Chemistry").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                .title("Department of Chemistry").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(Mech)
-                .title("Mechanical Engineering").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                .title("Mechanical Engineering").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(Dudley)
-                .title("Dudley Morrey Hall").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                .title("Dudley Morrey Hall").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(SthGarage)
-                .title("South Garage").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                .title("South Garage").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
 
          mMap.addMarker(new MarkerOptions()
                .position(ArtBuilding)
-                .title("Art Building").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+                .title("12/07/16 Sexual Battery").icon(BitmapDescriptorFactory.fromResource(R.drawable.sexual)));
 
+        mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(37.332955, -121.880967))
+                .title("01/16/16 Purse Snatch").icon(BitmapDescriptorFactory.fromResource(R.drawable.robbery)));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(37.333842, -121.881262))
+                .title("01/06/16 Vehicles Burglaries").icon(BitmapDescriptorFactory.fromResource(R.drawable.robbery)));
+        mMap.addMarker(new MarkerOptions()
+                .position(ArtBuilding)
+                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+        mMap.addMarker(new MarkerOptions()
+                .position(ArtBuilding)
+                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+        mMap.addMarker(new MarkerOptions()
+                .position(ArtBuilding)
+                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+        mMap.addMarker(new MarkerOptions()
+                .position(ArtBuilding)
+                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(ArtBuilding)
+                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(ArtBuilding)
+                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(ArtBuilding)
+                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+        mMap.addMarker(new MarkerOptions()
+                .position(ArtBuilding)
+                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(ArtBuilding)
+                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(ArtBuilding)
+                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(ArtBuilding)
+                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(ArtBuilding)
+                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(ArtBuilding)
+                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(ArtBuilding)
+                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(ArtBuilding)
+                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(ArtBuilding)
+                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(ArtBuilding)
+                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(ArtBuilding)
+                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(ArtBuilding)
+                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(ArtBuilding)
+                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(ArtBuilding)
+                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(ArtBuilding)
+                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
 
 
 

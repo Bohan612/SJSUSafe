@@ -26,17 +26,16 @@ public class BackgroundTask extends AsyncTask<String,Void,String>{
         this.ctx=ctx;
     }
 
-
     @Override
     protected String doInBackground(String... params) {
-        String regurl="http://10.250.170.135/register.php";
+        String regurl="http://10.0.2.2/register.php";
     //   String loginurl="http://127.0.0.1/login.php";
         String method=params[0];
         if(method.equals("register")){
 
             String username=params[1];
             String password=params[2];
-            String  sid=params[3];
+            String sid=params[3];
             String email=params[4];
             String phone=params[5];
             String ephone=params[6];

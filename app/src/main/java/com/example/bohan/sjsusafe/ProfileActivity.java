@@ -1,5 +1,6 @@
 package com.example.bohan.sjsusafe;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,8 +17,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-
-        etUsername=(EditText)findViewById(R.id.username);
+        etUsername=(EditText)findViewById(R.id.UserName);
         etPassword=(EditText)findViewById(R.id.password);
         etSID=(EditText)findViewById(R.id.StudentId);
         etEmail=(EditText)findViewById(R.id.SJSUEmail);
@@ -27,25 +27,33 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
+    public void register(View view){
+        if(etUsername!=null) {
+           username = etUsername.getText().toString();
 
+       }
 
-    public void userRegister(View view){
-        username=etUsername.getText().toString();
-        password=etPassword.getText().toString();
-        sid=etSID.getText().toString();
-        email=etEmail.getText().toString();
-        phone=etPhone.getText().toString();
-        ephone=etEPhone.getText().toString();
-        bgroup=etBGroup.getText().toString();
-
+        if(etPassword!=null) {
+            password = etPassword.getText().toString();
+        }
+        if(etSID!=null) {
+            sid = etSID.getText().toString();
+        }
+        if(etEmail!=null) {
+            email = etEmail.getText().toString();
+        }
+        if(etPhone!=null) {
+            phone = etPhone.getText().toString();
+        }if(etEPhone!=null) {
+            ephone = etEPhone.getText().toString();
+        }
+        if(etBGroup!=null) {
+            bgroup = etBGroup.getText().toString();
+        }
         String method="register";
-
+        //Log.d("STATE",method.toString());
         BackgroundTask backgroundTask= new BackgroundTask(this);
-
         backgroundTask.execute(method,username,password,sid,email,phone,ephone,bgroup);
-
         finish();
-
-
     }
 }

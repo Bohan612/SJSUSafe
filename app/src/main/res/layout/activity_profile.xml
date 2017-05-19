@@ -24,7 +24,9 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp">
+        android:layout_marginRight="8dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintVertical_bias="1.0">
 
         <EditText
             android:id="@+id/UserName"
@@ -137,7 +139,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginRight="20dp"
             android:layout_marginTop="50dp"
-            android:onClick="userRegister"
+            android:onClick="register"
             android:text="Register" />
 
     </LinearLayout>
