@@ -89,6 +89,10 @@ public class Main2Activity extends AppCompatActivity
         }  else if (id == R.id.nav_news) {
             Intent NewsNav = new Intent(Main2Activity.this, StoryActivity.class);
             startActivity(NewsNav);
+        }
+           else if (id == R.id.nav_login) {
+                Intent LoginNav = new Intent(Main2Activity.this, Login.class);
+                startActivity(LoginNav);
         }else if (id == R.id.nav_report) {
             Intent ReportNav = new Intent(Main2Activity.this, ReportActivity.class);
             startActivity(ReportNav);
