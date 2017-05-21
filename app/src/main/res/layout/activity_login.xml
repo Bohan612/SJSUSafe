@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-
+        android:background="@drawable/sjsu"
         android:orientation="vertical"
         tools:layout_constraintTop_creator="1"
         tools:layout_constraintRight_creator="1"
@@ -86,16 +86,7 @@
                 android:text="Register" />
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="60dp"
-            android:layout_marginLeft="100dp"
-            app:srcCompat="@drawable/sjsu"
-            tools:layout_editor_absoluteX="82dp"
-            tools:layout_editor_absoluteY="-81dp"
-            android:layout_gravity="center_horizontal"/>
+
 
     </LinearLayout>
 

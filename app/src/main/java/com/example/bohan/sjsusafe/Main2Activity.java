@@ -57,7 +57,7 @@ public class Main2Activity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         //// code from Bohan
-        getPermissionToReadUserContacts();
+        //getPermissionToReadUserContacts();
 
 
     }
@@ -115,10 +115,6 @@ public class Main2Activity extends AppCompatActivity
         }else if (id == R.id.nav_report) {
             Intent ReportNav = new Intent(Main2Activity.this, ReportActivity.class);
             startActivity(ReportNav);
-        }
-        else if (id == R.id.nav_about) {
-            Intent AboutNav = new Intent(Main2Activity.this, AboutActivity.class);
-            startActivity(AboutNav);
         }
         else if (id == R.id.nav_alert){
             Intent AlertNav = new Intent(Main2Activity.this, AlertActivity.class);

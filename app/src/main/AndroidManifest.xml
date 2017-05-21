@@ -68,10 +68,10 @@
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity android:name=".StoryActivity" />
-        <activity android:name=".AlertActivity"></activity>
+        <activity android:name=".AlertActivity" />
         <activity android:name=".StoryActivity" />
         <activity android:name=".Login" />
-        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".ProfileActivity" />
     </application>
 
 </manifest>

@@ -1,19 +1,30 @@
 package com.example.bohan.sjsusafe;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
+import android.location.Location;
+import android.location.LocationListener;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.view.View;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -29,8 +40,11 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.Driver;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener,
+        LocationListener {
 
     private GoogleMap mMap;
 
@@ -38,11 +52,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
+
+
 
     public BitmapDescriptor vectorToBitmap(@DrawableRes int id, @ColorInt int color) {
         Drawable vectorDrawable = ResourcesCompat.getDrawable(getResources(), id, null);
@@ -69,7 +88,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
+        //Initialize Google Play Services
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.ACCESS_FINE_LOCATION)
+                    == PackageManager.PERMISSION_GRANTED) {
+                buildGoogleApiClient();
+                mMap.setMyLocationEnabled(true);
+            }
+        }
+        else {
+            buildGoogleApiClient();
+            mMap.setMyLocationEnabled(true);
+        }
         // Add a marker in Sydney and move the camera
         LatLng SJSU = new LatLng(37.3356807, -121.8821639);
         LatLng ArtBuilding = new LatLng(37.3356807, -121.8821639);
@@ -112,103 +143,103 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mMap.addMarker(new MarkerOptions()
                 .position(ArtBuilding)
-                .title("Department of Art").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                .title("Department of Art").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
         mMap.addMarker(new MarkerOptions()
                 .position(ADM)
-                .title("Administration").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                .title("Administration").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(StudentUnion)
-                .title("Student Union").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                .title("Student Union").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(MLK)
-                .title("Martin Luther King Library").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                .title("Martin Luther King Library").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(ASPrint)
-                .title("Associated Student Print Shop").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                .title("Associated Student Print Shop").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
         mMap.addMarker(new MarkerOptions()
                 .position(ClarkHall)
-                .title("Clark Hall").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                .title("Clark Hall").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
         mMap.addMarker(new MarkerOptions()
                 .position(Music)
-                .title("The school of Music and Dance").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                .title("The school of Music and Dance").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
         mMap.addMarker(new MarkerOptions()
                 .position(EventCenter)
-                .title("Event Center").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                .title("Event Center").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
         mMap.addMarker(new MarkerOptions()
                 .position(VillageMarket)
-                .title("Village Market I").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                .title("Village Market I").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
         mMap.addMarker(new MarkerOptions()
                 .position(DC)
-                .title("Dinning commons").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                .title("Dinning commons").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
         mMap.addMarker(new MarkerOptions()
                 .position(Starbucks)
-                .title("StarBucks").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                .title("StarBucks").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
         mMap.addMarker(new MarkerOptions()
                 .position(BBC)
-                .title("Boccardo Business Center").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                .title("Boccardo Business Center").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
         mMap.addMarker(new MarkerOptions()
                 .position(CareerCenter)
-                .title("Career Center").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                .title("Career Center").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
         mMap.addMarker(new MarkerOptions()
                 .position(Mech)
-                .title("Building of Engineering").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                .title("Building of Engineering").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
         mMap.addMarker(new MarkerOptions()
                 .position(WellnessCenter)
-                .title("Wellness Center").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                .title("Wellness Center").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
 
 
         mMap.addMarker(new MarkerOptions()
                 .position(CampusVillageA)
-                .title("Campus Village A").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                .title("Campus Village A").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(SpartanMemorial)
-                .title("Spartan Memorial").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                .title("Spartan Memorial").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(AS)
-                .title("Associated Students").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                .title("Associated Students").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(Morris)
-                .title("Morris Dalley Auditorium").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                .title("Morris Dalley Auditorium").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
 
 
         mMap.addMarker(new MarkerOptions()
                 .position(Lucas)
-                .title("Lucas College and Graduate School of Business").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                .title("Lucas College and Graduate School of Business").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(McQuire)
-                .title("MacQuirrie Hall").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                .title("MacQuirrie Hall").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
 
 
         mMap.addMarker(new MarkerOptions()
                 .position(JoeWest)
-                .title("JoeWest").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                .title("JoeWest").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(PoliceDepartment)
-                .title("University Police Department").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                .title("University Police Department").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(Chem)
-                .title("Department of Chemistry").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                .title("Department of Chemistry").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(Mech)
-                .title("Mechanical Engineering").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                .title("Mechanical Engineering").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(Dudley)
-                .title("Dudley Morrey Hall").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                .title("Dudley Morrey Hall").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(SthGarage)
-                .title("South Garage").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                .title("South Garage").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
 
          mMap.addMarker(new MarkerOptions()
                .position(ArtBuilding)
@@ -223,7 +254,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .title("01/06/16 Vehicles Burglaries").icon(BitmapDescriptorFactory.fromResource(R.drawable.robbery)));
         mMap.addMarker(new MarkerOptions()
                 .position(new LatLng(37.334013,-121.878312))
-                .title("05/03/15 Dinning Commons").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+                .title("05/03/15 Dinning Commons").icon(BitmapDescriptorFactory.fromResource(R.drawable.soliciation)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(new LatLng(37.337041,-121.87976))
@@ -231,7 +262,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mMap.addMarker(new MarkerOptions()
                 .position(new LatLng(37.336457,-121.878725))
-                .title("18/04/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+                .title("18/04/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.soliciation)));
 
 
         mMap.addMarker(new MarkerOptions()
@@ -251,7 +282,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .title("07/07/12 Vandalism").icon(BitmapDescriptorFactory.fromResource(R.drawable.vandalism)));
         mMap.addMarker(new MarkerOptions()
                 .position(new LatLng(37.336291,-121.883751))
-                .title("02/06/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+                .title("02/06/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.soliciation)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(new LatLng(37.332443,-121.8816648))
@@ -267,7 +298,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mMap.addMarker(new MarkerOptions()
                 .position(ArtBuilding)
-                .title("01/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+                .title("01/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.soliciation)));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(ArtBuilding)
+                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.soliciation)));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(ArtBuilding)
+                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.soliciation)));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(ArtBuilding)
+                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.soliciation)));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(ArtBuilding)
+                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.soliciation)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(ArtBuilding)
@@ -292,32 +339,54 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions()
                 .position(ArtBuilding)
                 .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
-
-        mMap.addMarker(new MarkerOptions()
-                .position(ArtBuilding)
-                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
-
-        mMap.addMarker(new MarkerOptions()
-                .position(ArtBuilding)
-                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
-
-        mMap.addMarker(new MarkerOptions()
-                .position(ArtBuilding)
-                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
-
-        mMap.addMarker(new MarkerOptions()
-                .position(ArtBuilding)
-                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
-
-
-
-
 
     }
 
+    protected synchronized void buildGoogleApiClient() {
+     //   GoogleApiClient mGoogleApiClient = new GoogleApiClient.Builder(this)
+       //         .addConnectionCallbacks(this)
+         //       .addOnConnectionFailedListener(this)
+           //     .addApi(LocationServices.API)
+             //   .build();
+       // mGoogleApiClient.connect();
+    }
 
 
-     }
+    @Override
+    public void onLocationChanged(Location location) {
+
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+}
 
 
 

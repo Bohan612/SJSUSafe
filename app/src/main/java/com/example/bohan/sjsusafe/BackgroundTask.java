@@ -33,6 +33,8 @@ public class BackgroundTask extends AsyncTask<String,Void,String>{
     protected String doInBackground(String... params) {
         String regurl="http://10.0.2.2/register.php";
         String loginurl="http://10.0.2.2/login.php";
+        String Newsurl="http://10.0.2.2/GetNews.php";
+        String JSON_STRING;
         String method=params[0];
         if(method.equals("register")){
 
@@ -110,10 +112,17 @@ public class BackgroundTask extends AsyncTask<String,Void,String>{
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-
-
         }
+
+
+
+
+
+
+
+
+
+
         return null;
     }
 
@@ -132,8 +141,7 @@ public class BackgroundTask extends AsyncTask<String,Void,String>{
         if(result.equals("Registration successful")) {
             Toast.makeText(ctx, result, Toast.LENGTH_LONG).show();
         }
-        else{
-            Toast.makeText(ctx, result, Toast.LENGTH_LONG).show();
-        }
+
+
     }
 }

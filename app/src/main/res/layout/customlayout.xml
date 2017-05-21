@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/imImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="67dp"
+            android:layout_marginStart="67dp"
+            android:layout_marginTop="54dp"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tvIncidentType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imImage"
+            android:layout_marginLeft="19dp"
+            android:layout_marginStart="19dp"
+            android:layout_toEndOf="@+id/imImage"
+            android:layout_toRightOf="@+id/imImage"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/tvLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tvIncidentType"
+            android:layout_toEndOf="@+id/tvIncidentType"
+            android:text="TextView"
+            android:background="#00000000"
+            android:textSize="20dp"
+            android:textColor="#FF267F00"
+            android:textStyle="bold"
+            android:layout_toRightOf="@+id/tvIncidentType" />
+
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imImage"
+            android:layout_marginTop="33dp"
+
+            android:textColor="#94eafcfa"
+
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/lblReportedBy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/imImage"
+            android:layout_alignRight="@+id/imImage"
+            android:layout_below="@+id/tvDescription"
+            android:layout_marginTop="28dp"
+
+            android:textColor="#fafafa"
+
+            android:text="Reported By:" />
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tvIncidentType"
+            android:layout_alignStart="@+id/tvIncidentType"
+            android:layout_alignTop="@+id/lblReportedBy"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:textColor="#fafafa"
+            android:text="TextView" />
+
+
+</RelativeLayout>
