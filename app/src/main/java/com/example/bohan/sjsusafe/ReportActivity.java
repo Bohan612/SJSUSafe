@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
@@ -26,12 +27,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedWriter;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.text.DateFormat;
+import java.util.Date;
+
+
 
 public class ReportActivity extends AppCompatActivity {
 
@@ -58,7 +69,7 @@ public class ReportActivity extends AppCompatActivity {
         btnSubmitPicture = (Button)findViewById(R.id.btnSubmitPicture);
         ivSelected = (ImageView)findViewById(R.id.ivSelected);
 
-        upLoadServerUri = "http://192.168.2.4/fileupload/UploadToServer.php";
+        upLoadServerUri = "http://10.0.2.2/reportIncidentsTwo.php";
 
         getPermissionToAccessExternalStorage();
 
@@ -79,7 +90,13 @@ public class ReportActivity extends AppCompatActivity {
                 new Thread(new Runnable() {
                     public void run() {
 
-                        uploadFile(imagepath);
+                        //// send back user input form data
+
+
+                        String text = etMessageText.getText().toString();
+                        sendHttpRequest(text);
+                        new UploadFileAsync().execute("");
+                        dialog.dismiss();
 
                     }
                 }).start();
@@ -87,6 +104,52 @@ public class ReportActivity extends AppCompatActivity {
         });
     }
 
+    private void sendHttpRequest(String msgText)
+    {
+        String regurl="http://10.0.2.2/reportIncidentsForm.php";
+        //   String loginurl="http://127.0.0.1/login.php";
+        //String method=params[0];
+        //if(method.equals("register")){
+
+//            String username=params[1];
+//            String password=params[2];
+//            String sid=params[3];
+//            String email=params[4];
+//            String phone=params[5];
+//            String ephone=params[6];
+//            String bgroup=params[7];
+            try {
+                URL url= new URL(regurl);
+                HttpURLConnection httpURLConnection=(HttpURLConnection)url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                OutputStream os=httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
+                String data= URLEncoder.encode("IncidentType","UTF-8") + "=" + URLEncoder.encode("3","UTF-8")+"&"+
+                        URLEncoder.encode("Location","UTF-8") + "=" + URLEncoder.encode("Clark Hall","UTF-8")+"&"+
+                        URLEncoder.encode("Date","UTF-8") + "=" + URLEncoder.encode("2016-12-01","UTF-8")+"&"+
+                        URLEncoder.encode("IncidentSeverity","UTF-8") + "=" + URLEncoder.encode("6","UTF-8")+"&"+
+                        URLEncoder.encode("ReporterName","UTF-8") + "=" + URLEncoder.encode("Maitry Shah","UTF-8")+"&"+
+                        URLEncoder.encode("Longitude","UTF-8") + "=" + URLEncoder.encode("-121.882598","UTF-8")+"&"+
+                        URLEncoder.encode("Latitude","UTF-8") + "=" + URLEncoder.encode("37.336239","UTF-8")+"&"+
+                        URLEncoder.encode("IncidentDetailMessage","UTF-8") + "=" + URLEncoder.encode(msgText,"UTF-8");
+
+                bufferedWriter.write(data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                os.close();
+                InputStream is=httpURLConnection.getInputStream();
+                is.close();
+                //return "Registration successful";
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        //}
+    }
 
     public int uploadFile(String sourceFileUri) {
 
@@ -221,6 +284,138 @@ public class ReportActivity extends AppCompatActivity {
             return serverResponseCode;
 
         } // End else block
+    }
+
+
+    private class UploadFileAsync extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            try {
+                String sourceFileUri = imagepath; //"/mnt/sdcard/abc.png";
+
+                HttpURLConnection conn = null;
+                DataOutputStream dos = null;
+                String lineEnd = "\r\n";
+                String twoHyphens = "--";
+                String boundary = "*****";
+                int bytesRead, bytesAvailable, bufferSize;
+                byte[] buffer;
+                int maxBufferSize = 1 * 1024 * 1024;
+                File sourceFile = new File(sourceFileUri);
+
+                if (sourceFile.isFile()) {
+
+                    try {
+                        //String upLoadServerUri = upLoadServerUri;
+
+                        // open a URL connection to the Servlet
+                        FileInputStream fileInputStream = new FileInputStream(
+                                sourceFile);
+                        URL url = new URL(upLoadServerUri);
+
+                        // Open a HTTP connection to the URL
+                        conn = (HttpURLConnection) url.openConnection();
+                        conn.setDoInput(true); // Allow Inputs
+                        conn.setDoOutput(true); // Allow Outputs
+                        conn.setUseCaches(false); // Don't use a Cached Copy
+                        conn.setRequestMethod("POST");
+                        conn.setRequestProperty("Connection", "Keep-Alive");
+                        conn.setRequestProperty("ENCTYPE",
+                                "multipart/form-data");
+                        conn.setRequestProperty("Content-Type",
+                                "multipart/form-data;boundary=" + boundary);
+                        conn.setRequestProperty("bill", sourceFileUri);
+
+                        dos = new DataOutputStream(conn.getOutputStream());
+
+                        dos.writeBytes(twoHyphens + boundary + lineEnd);
+                        dos.writeBytes("Content-Disposition: form-data; name=\"bill\";filename=\""
+                                + sourceFileUri + "\"" + lineEnd);
+
+                        dos.writeBytes(lineEnd);
+
+                        // create a buffer of maximum size
+                        bytesAvailable = fileInputStream.available();
+
+                        bufferSize = Math.min(bytesAvailable, maxBufferSize);
+                        buffer = new byte[bufferSize];
+
+                        // read file and write it into form...
+                        bytesRead = fileInputStream.read(buffer, 0, bufferSize);
+
+                        while (bytesRead > 0) {
+
+                            dos.write(buffer, 0, bufferSize);
+                            bytesAvailable = fileInputStream.available();
+                            bufferSize = Math
+                                    .min(bytesAvailable, maxBufferSize);
+                            bytesRead = fileInputStream.read(buffer, 0,
+                                    bufferSize);
+
+                        }
+
+                        // send multipart form data necesssary after file
+                        // data...
+                        dos.writeBytes(lineEnd);
+                        dos.writeBytes(twoHyphens + boundary + twoHyphens
+                                + lineEnd);
+
+                        // Responses from the server (code and message)
+                        serverResponseCode = conn.getResponseCode();
+                        String serverResponseMessage = conn
+                                .getResponseMessage();
+
+                        if (serverResponseCode == 200) {
+
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    dialog.dismiss();
+                                    String msg = "File Upload Completed.\n\n See uploaded file here : \n\n"
+                                            +" c:/xamp/htdocs/file upload/uploads";
+                                    tvFilePath.setText(msg);
+                                    Toast.makeText(ReportActivity.this, "File Upload Complete.", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+
+                        // close the streams //
+                        fileInputStream.close();
+                        dos.flush();
+                        dos.close();
+
+                    } catch (Exception e) {
+
+                        // dialog.dismiss();
+                        e.printStackTrace();
+
+                    }
+                    // dialog.dismiss();
+
+                } // End else block
+
+
+            } catch (Exception ex) {
+                // dialog.dismiss();
+
+                ex.printStackTrace();
+            }
+            return "Executed";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+        }
+
+        @Override
+        protected void onPreExecute() {
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+        }
     }
 
 
