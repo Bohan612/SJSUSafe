@@ -40,13 +40,15 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 
 
 public class ReportActivity extends AppCompatActivity {
 
-    private EditText etMessageText;
+    private EditText etMessageText, location;
     private TextView tvFilePath;
     private Button btnUploadPicture, btnSubmitPicture;
     private ImageView ivSelected;
@@ -68,6 +70,8 @@ public class ReportActivity extends AppCompatActivity {
         tvFilePath  = (TextView)findViewById(R.id.tvFilePath);
         btnSubmitPicture = (Button)findViewById(R.id.btnSubmitPicture);
         ivSelected = (ImageView)findViewById(R.id.ivSelected);
+        location = (EditText)findViewById(R.id.ptLocation);
+
 
         upLoadServerUri = "http://10.0.2.2/reportIncidentsTwo.php";
 
@@ -111,14 +115,15 @@ public class ReportActivity extends AppCompatActivity {
         //String method=params[0];
         //if(method.equals("register")){
 
-//            String username=params[1];
-//            String password=params[2];
-//            String sid=params[3];
-//            String email=params[4];
-//            String phone=params[5];
-//            String ephone=params[6];
-//            String bgroup=params[7];
-            try {
+        Calendar c = Calendar.getInstance();
+        System.out.println("Current time => " + c.getTime());
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = df.format(c.getTime());
+
+        String txtLocation = location.getText().toString();
+
+        try {
                 URL url= new URL(regurl);
                 HttpURLConnection httpURLConnection=(HttpURLConnection)url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
@@ -126,8 +131,8 @@ public class ReportActivity extends AppCompatActivity {
                 OutputStream os=httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
                 String data= URLEncoder.encode("IncidentType","UTF-8") + "=" + URLEncoder.encode("3","UTF-8")+"&"+
-                        URLEncoder.encode("Location","UTF-8") + "=" + URLEncoder.encode("Clark Hall","UTF-8")+"&"+
-                        URLEncoder.encode("Date","UTF-8") + "=" + URLEncoder.encode("2016-12-01","UTF-8")+"&"+
+                        URLEncoder.encode("Location","UTF-8") + "=" + URLEncoder.encode(txtLocation,"UTF-8")+"&"+
+                        URLEncoder.encode("Date","UTF-8") + "=" + URLEncoder.encode(formattedDate,"UTF-8")+"&"+
                         URLEncoder.encode("IncidentSeverity","UTF-8") + "=" + URLEncoder.encode("6","UTF-8")+"&"+
                         URLEncoder.encode("ReporterName","UTF-8") + "=" + URLEncoder.encode("Maitry Shah","UTF-8")+"&"+
                         URLEncoder.encode("Longitude","UTF-8") + "=" + URLEncoder.encode("-121.882598","UTF-8")+"&"+

@@ -8,8 +8,8 @@
 
     <EditText
         android:id="@+id/etMessageText"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="313dp"
+        android:layout_height="141dp"
         android:background="@drawable/edit_text_background"
         android:gravity="top|left"
         android:inputType="textMultiLine"
@@ -34,14 +34,14 @@
         android:layout_marginLeft="37dp"
         android:layout_marginRight="37dp"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btnUploadPicture"
         android:layout_width="93dp"
-        android:layout_height="42dp"
+        android:layout_height="48dp"
         android:layout_marginBottom="15dp"
-        android:layout_marginLeft="37dp"
+        android:layout_marginLeft="38dp"
         android:layout_marginStart="38dp"
         android:text="Upload"
         app:layout_constraintBottom_toTopOf="@+id/ivSelected"
@@ -59,31 +59,30 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginEnd="37dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginBottom="25dp"
-        android:layout_marginRight="37dp" />
+        android:layout_marginBottom="-102dp"
+        android:layout_marginRight="-9dp" />
 
     <ImageView
         android:id="@+id/ivSelected"
-        android:layout_width="308dp"
+        android:layout_width="0dp"
         android:layout_height="148dp"
         app:srcCompat="@drawable/common_google_signin_btn_icon_dark_normal_background"
         tools:layout_constraintTop_creator="1"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toTopOf="@+id/btnSubmitPicture"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="36dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/tvFilePath"
+        android:layout_marginTop="57dp"
         tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="21dp"
+        android:layout_marginBottom="59dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        tools:layout_editor_absoluteY="285dp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_marginLeft="36dp"
+        android:layout_marginRight="36dp"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintBottom_toBottomOf="@+id/btnSubmitPicture"
+        app:layout_constraintTop_toTopOf="@+id/tvFilePath" />
 
     <TextView
         android:id="@+id/tvFilePath"
@@ -104,5 +103,29 @@
         android:layout_marginLeft="12dp"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/ptLocation"
+        android:layout_width="310dp"
+        android:layout_height="54dp"
+        android:ems="10"
+        android:hint="Location"
+        android:inputType="textPersonName"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/btnUploadPicture"
+        android:layout_marginStart="37dp"
+        android:layout_marginEnd="37dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/etMessageText"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="14dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="37dp"
+        android:layout_marginRight="37dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintVertical_bias="0.733" />
 
 </android.support.constraint.ConstraintLayout>
