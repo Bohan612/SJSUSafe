@@ -27,12 +27,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -40,13 +42,15 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 
 
 public class ReportActivity extends AppCompatActivity {
 
-    private EditText etMessageText;
+    private EditText etMessageText, location;
     private TextView tvFilePath;
     private Button btnUploadPicture, btnSubmitPicture;
     private ImageView ivSelected;
@@ -56,6 +60,7 @@ public class ReportActivity extends AppCompatActivity {
 
     private int serverResponseCode = 0;
     private String upLoadServerUri = null;
+    private int insertedIncidentId = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +73,8 @@ public class ReportActivity extends AppCompatActivity {
         tvFilePath  = (TextView)findViewById(R.id.tvFilePath);
         btnSubmitPicture = (Button)findViewById(R.id.btnSubmitPicture);
         ivSelected = (ImageView)findViewById(R.id.ivSelected);
+        location = (EditText)findViewById(R.id.ptLocation);
+
 
         upLoadServerUri = "http://10.0.2.2/reportIncidentsTwo.php";
 
@@ -91,8 +98,6 @@ public class ReportActivity extends AppCompatActivity {
                     public void run() {
 
                         //// send back user input form data
-
-
                         String text = etMessageText.getText().toString();
                         sendHttpRequest(text);
                         new UploadFileAsync().execute("");
@@ -111,14 +116,15 @@ public class ReportActivity extends AppCompatActivity {
         //String method=params[0];
         //if(method.equals("register")){
 
-//            String username=params[1];
-//            String password=params[2];
-//            String sid=params[3];
-//            String email=params[4];
-//            String phone=params[5];
-//            String ephone=params[6];
-//            String bgroup=params[7];
-            try {
+        Calendar c = Calendar.getInstance();
+        System.out.println("Current time => " + c.getTime());
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = df.format(c.getTime());
+
+        String txtLocation = location.getText().toString();
+
+        try {
                 URL url= new URL(regurl);
                 HttpURLConnection httpURLConnection=(HttpURLConnection)url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
@@ -126,8 +132,8 @@ public class ReportActivity extends AppCompatActivity {
                 OutputStream os=httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
                 String data= URLEncoder.encode("IncidentType","UTF-8") + "=" + URLEncoder.encode("3","UTF-8")+"&"+
-                        URLEncoder.encode("Location","UTF-8") + "=" + URLEncoder.encode("Clark Hall","UTF-8")+"&"+
-                        URLEncoder.encode("Date","UTF-8") + "=" + URLEncoder.encode("2016-12-01","UTF-8")+"&"+
+                        URLEncoder.encode("Location","UTF-8") + "=" + URLEncoder.encode(txtLocation,"UTF-8")+"&"+
+                        URLEncoder.encode("Date","UTF-8") + "=" + URLEncoder.encode(formattedDate,"UTF-8")+"&"+
                         URLEncoder.encode("IncidentSeverity","UTF-8") + "=" + URLEncoder.encode("6","UTF-8")+"&"+
                         URLEncoder.encode("ReporterName","UTF-8") + "=" + URLEncoder.encode("Maitry Shah","UTF-8")+"&"+
                         URLEncoder.encode("Longitude","UTF-8") + "=" + URLEncoder.encode("-121.882598","UTF-8")+"&"+
@@ -138,9 +144,32 @@ public class ReportActivity extends AppCompatActivity {
                 bufferedWriter.flush();
                 bufferedWriter.close();
                 os.close();
-                InputStream is=httpURLConnection.getInputStream();
-                is.close();
+                //InputStream is=httpURLConnection.getInputStream();
+                //is.close();
                 //return "Registration successful";
+
+                //os.close();
+
+                InputStream is=httpURLConnection.getInputStream();
+                BufferedReader bufferedReader= new BufferedReader(new InputStreamReader(is,"iso-8859-1"));
+                String response="";
+                String line="";
+                while((line=bufferedReader.readLine())!=null){
+                    response+=line;
+                }
+
+                bufferedReader.close();
+                is.close();
+                httpURLConnection.disconnect();
+
+                int index = 0;
+                for (int i = response.length()-1; i >1; --i)
+                    if (response.charAt(i) == '>' || response.charAt(i) == ';') {
+                        index = i+1;
+                        break;
+                    }
+
+                insertedIncidentId = Integer.parseInt(response.substring(index));
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -359,6 +388,7 @@ public class ReportActivity extends AppCompatActivity {
                         // send multipart form data necesssary after file
                         // data...
                         dos.writeBytes(lineEnd);
+                        //dos.writeBytes("insertedIncidentId=\"" + insertedIncidentId + "\";");
                         dos.writeBytes(twoHyphens + boundary + twoHyphens
                                 + lineEnd);
 
