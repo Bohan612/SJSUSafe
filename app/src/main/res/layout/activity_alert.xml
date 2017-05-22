@@ -4,14 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.bohan.sjsusafe.AlertActivity">
+    tools:context="com.example.bohan.sjsusafe.AlertActivity"
+    android:background="@drawable/sjsu1">
 
     <Button
         android:id="@+id/btnAlertFriends"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="99dp"
+        android:layout_width="188dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="89dp"
+        android:background="@color/common_google_signin_btn_text_dark_focused"
         android:text="Alert Friends"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -21,28 +24,35 @@
 
     <Button
         android:id="@+id/btnCallPolice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="182dp"
+        android:layout_height="51dp"
         android:layout_marginTop="23dp"
         android:text="Call University Police"
-        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintHorizontal_bias="0.523"
+        android:background="@color/common_google_signin_btn_text_dark_focused"
+
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         app:layout_constraintLeft_toLeftOf="@+id/btnAlertFriends"
         app:layout_constraintRight_toRightOf="@+id/btnAlertFriends"
         app:layout_constraintTop_toBottomOf="@+id/btnAlertFriends"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1" />
+        tools:layout_constraintTop_creator="1"
+        tools:layout_editor_absoluteY="157dp"
+        tools:layout_editor_absoluteX="94dp" />
 
     <Button
         android:id="@+id/btnCallAmbu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="188dp"
+        android:layout_height="49dp"
         android:layout_marginTop="32dp"
         android:text="Call Ambulance"
         app:layout_constraintLeft_toLeftOf="@+id/btnCallPolice"
         app:layout_constraintRight_toRightOf="@+id/btnCallPolice"
         app:layout_constraintTop_toBottomOf="@+id/btnCallPolice"
         tools:layout_constraintLeft_creator="1"
+        android:background="@color/common_google_signin_btn_text_dark_focused"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintTop_creator="1" />
 </android.support.constraint.ConstraintLayout>

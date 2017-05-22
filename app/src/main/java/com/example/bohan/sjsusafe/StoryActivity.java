@@ -123,20 +123,20 @@ public class StoryActivity extends AppCompatActivity{
           TextView tvIncidentDescription=(TextView)convertView.findViewById(R.id.tvDescription);
             TextView tvLocation=(TextView)convertView.findViewById(R.id.tvLocation);
             TextView tvReporterName=(TextView)convertView.findViewById(R.id.tvName);
-            //TextView tvDate=(TextView)convertView.findViewById(R.id.tvDate);
+            TextView tvDate=(TextView)convertView.findViewById(R.id.tvDate);
             Incidentproperties objIncident=(Incidentproperties)this.getItem(position);
 
            tvIncidentDescription.setText(objIncident.getDescription());
             tvLocation.setText(objIncident.getLocation());
             tvReporterName.setText(objIncident.getReporterName());
-         //   tvDate.setText(objIncident.getDate());
+            tvDate.setText("Date: " + objIncident.getDate());
 
             if(position%2==0){
-                convertView.setBackgroundColor(Color.rgb(66,109,178));
+                convertView.setBackgroundColor(Color.rgb(2, 22, 48));
 
             }
             else{
-                convertView.setBackgroundColor(Color.rgb(12,12,11));
+                convertView.setBackgroundColor(Color.rgb(123, 126, 130));
 
             }
 

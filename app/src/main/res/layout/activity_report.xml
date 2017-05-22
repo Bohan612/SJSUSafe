@@ -8,8 +8,8 @@
 
     <EditText
         android:id="@+id/etMessageText"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="285dp"
+        android:layout_height="145dp"
         android:background="@drawable/edit_text_background"
         android:gravity="top|left"
         android:inputType="textMultiLine"
@@ -34,7 +34,7 @@
         android:layout_marginLeft="37dp"
         android:layout_marginRight="37dp"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btnUploadPicture"
@@ -59,8 +59,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginEnd="37dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginBottom="25dp"
-        android:layout_marginRight="37dp" />
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="259dp" />
 
     <ImageView
         android:id="@+id/ivSelected"

@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.bohan.sjsusafe.Main2Activity"
-android:background="@drawable/sjsu1"
+
+
     >
 
     <android.support.design.widget.AppBarLayout
@@ -39,30 +40,6 @@ android:background="@drawable/sjsu1"
         android:orientation="vertical">
 
 
-        <EditText
-            android:id="@+id/project"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="80dp"
-            android:backgroundTint="@android:color/background_light"
-            android:text="   SJSUSAFE"
-            android:textSize="30sp"
-
-            />
-
-
-        <EditText
-            android:id="@+id/authors"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="80dp"
-            android:backgroundTint="@android:color/background_light"
-            android:text="Authors:"
-            android:textSize="30sp"
-
-            />
 
 
     </LinearLayout>

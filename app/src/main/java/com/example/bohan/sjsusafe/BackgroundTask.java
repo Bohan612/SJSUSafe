@@ -118,11 +118,6 @@ public class BackgroundTask extends AsyncTask<String,Void,String>{
 
 
 
-
-
-
-
-
         return null;
     }
 
@@ -138,9 +133,9 @@ public class BackgroundTask extends AsyncTask<String,Void,String>{
 
     @Override
     protected void onPostExecute(String result) {
-        if(result.equals("Registration successful")) {
+
             Toast.makeText(ctx, result, Toast.LENGTH_LONG).show();
-        }
+
 
 
     }
