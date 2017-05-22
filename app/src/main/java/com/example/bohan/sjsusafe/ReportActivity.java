@@ -27,12 +27,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -58,6 +60,7 @@ public class ReportActivity extends AppCompatActivity {
 
     private int serverResponseCode = 0;
     private String upLoadServerUri = null;
+    private int insertedIncidentId = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,8 +98,6 @@ public class ReportActivity extends AppCompatActivity {
                     public void run() {
 
                         //// send back user input form data
-
-
                         String text = etMessageText.getText().toString();
                         sendHttpRequest(text);
                         new UploadFileAsync().execute("");
@@ -143,9 +144,32 @@ public class ReportActivity extends AppCompatActivity {
                 bufferedWriter.flush();
                 bufferedWriter.close();
                 os.close();
-                InputStream is=httpURLConnection.getInputStream();
-                is.close();
+                //InputStream is=httpURLConnection.getInputStream();
+                //is.close();
                 //return "Registration successful";
+
+                //os.close();
+
+                InputStream is=httpURLConnection.getInputStream();
+                BufferedReader bufferedReader= new BufferedReader(new InputStreamReader(is,"iso-8859-1"));
+                String response="";
+                String line="";
+                while((line=bufferedReader.readLine())!=null){
+                    response+=line;
+                }
+
+                bufferedReader.close();
+                is.close();
+                httpURLConnection.disconnect();
+
+                int index = 0;
+                for (int i = response.length()-1; i >1; --i)
+                    if (response.charAt(i) == '>' || response.charAt(i) == ';') {
+                        index = i+1;
+                        break;
+                    }
+
+                insertedIncidentId = Integer.parseInt(response.substring(index));
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -364,6 +388,7 @@ public class ReportActivity extends AppCompatActivity {
                         // send multipart form data necesssary after file
                         // data...
                         dos.writeBytes(lineEnd);
+                        //dos.writeBytes("insertedIncidentId=\"" + insertedIncidentId + "\";");
                         dos.writeBytes(twoHyphens + boundary + twoHyphens
                                 + lineEnd);
 
