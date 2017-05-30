@@ -34,11 +34,9 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class StoryActivity extends AppCompatActivity{
-    int[] IMAGES={R.drawable.assault,R.drawable.sexualassault,R.drawable.robbery};
-    String[] NAMES={"Assault","Sexual Assault","Robbery"};
-    String[] DESCRIPTIONS={"Assault","Assault","Robbery"};
-    String[] RName={"M","B","H"};
-    String[] IName={"1","2","3"};
+    int[] IMAGES={R.drawable.image1,R.drawable.image2,R.drawable.image3,R.drawable.image3};
+
+
     String JSON_STRING;
     JSONArray jsonarray;
     JSONObject jsonobj;
@@ -119,17 +117,35 @@ public class StoryActivity extends AppCompatActivity{
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             convertView=getLayoutInflater().inflate(R.layout.customlayout,null);
-        //    ImageView imageView=(ImageView)convertView.findViewById(R.id.imI);
+          ImageView imageView=(ImageView)convertView.findViewById(R.id.imImage);
           TextView tvIncidentDescription=(TextView)convertView.findViewById(R.id.tvDescription);
             TextView tvLocation=(TextView)convertView.findViewById(R.id.tvLocation);
             TextView tvReporterName=(TextView)convertView.findViewById(R.id.tvName);
             TextView tvDate=(TextView)convertView.findViewById(R.id.tvDate);
             Incidentproperties objIncident=(Incidentproperties)this.getItem(position);
 
-           tvIncidentDescription.setText(objIncident.getDescription());
+            String Type=objIncident.getIncidentType();
+            if(Type.equals("Solicitation")) {
+                imageView.setImageResource(R.drawable.solicitation1);
+            }
+            else if(Type.equals("Suicide")){
+                imageView.setImageResource(R.drawable.solicitation1);
+            }
+            else if(Type.equals("Assault")){
+                imageView.setImageResource(R.drawable.assault1);
+            }
+            else if(Type.equals("Robbery")){
+                imageView.setImageResource(R.drawable.robbery1);
+            }
+            else{
+                imageView.setImageResource(IMAGES[position]);
+            }
+            tvIncidentDescription.setText("Description: " + objIncident.getDescription());
             tvLocation.setText(objIncident.getLocation());
             tvReporterName.setText(objIncident.getReporterName());
             tvDate.setText("Date: " + objIncident.getDate());
+
+
 
             if(position%2==0){
                 convertView.setBackgroundColor(Color.rgb(2, 22, 48));

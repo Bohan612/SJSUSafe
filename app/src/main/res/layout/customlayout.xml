@@ -7,8 +7,8 @@
 
         <ImageView
             android:id="@+id/imImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="80dp"
+            android:layout_height="100dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
@@ -23,12 +23,12 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/imImage"
             android:layout_marginLeft="19dp"
-            android:layout_marginStart="19dp"
             android:layout_toEndOf="@+id/imImage"
             android:layout_toRightOf="@+id/imImage"
             android:textColor="#f5f5f4"
             android:textSize="20dp"
-            android:text="Location: " />
+            android:text="Location: "
+            />
 
         <TextView
             android:id="@+id/tvLocation"
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/imImage"
             android:layout_marginTop="33dp"
-
+            android:paddingRight="20dp"
             android:textColor="#94eafcfa"
             android:textSize="20dp"
 
@@ -92,6 +92,7 @@
             android:paddingRight="10dp"
             android:textSize="20dp"
             android:textColor="#cbf5ef"
+            android:gravity="center"
             android:text="TextView"
             android:paddingBottom="5dp"
             android:layout_alignLeft="@+id/lblReportedBy"

@@ -191,9 +191,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .title("Wellness Center").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
 
 
-        mMap.addMarker(new MarkerOptions()
-                .position(CampusVillageA)
-                .title("Campus Village A").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
+
 
         mMap.addMarker(new MarkerOptions()
                 .position(SpartanMemorial)
@@ -297,49 +295,56 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .title("08/04/15 Sexual assault").icon(BitmapDescriptorFactory.fromResource(R.drawable.assault)));
 
         mMap.addMarker(new MarkerOptions()
-                .position(ArtBuilding)
-                .title("01/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.soliciation)));
+                .position(new LatLng(37.335712,-121.88182))
+                .title("01/03/2016 Murder").icon(BitmapDescriptorFactory.fromResource(R.drawable.murder)));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(37.335732,-121.88282))
+                .title("10/02/2016 Murder").icon(BitmapDescriptorFactory.fromResource(R.drawable.murder)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(ArtBuilding)
-                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.soliciation)));
+                .title("11/07/16 Safe Zone").icon(BitmapDescriptorFactory.fromResource(R.drawable.safety)));
 
         mMap.addMarker(new MarkerOptions()
-                .position(ArtBuilding)
-                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.soliciation)));
+                .position(new LatLng(37.326868,-121.88256))
+                .title("05/23/17 Safety here").icon(BitmapDescriptorFactory.fromResource(R.drawable.safety)));
 
         mMap.addMarker(new MarkerOptions()
-                .position(ArtBuilding)
-                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.soliciation)));
+                .position(new LatLng(37.336868,-121.88256))
+                .title("12/07/16 A/ Trump Protest ").icon(BitmapDescriptorFactory.fromResource(R.drawable.protest)));
 
         mMap.addMarker(new MarkerOptions()
-                .position(ArtBuilding)
-                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.soliciation)));
+                .position(new LatLng(37.326868,-121.88356))
+                .title("12/07/16 Caesar Cavez Protest").icon(BitmapDescriptorFactory.fromResource(R.drawable.protest)));
 
         mMap.addMarker(new MarkerOptions()
-                .position(ArtBuilding)
-                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+                .position(new LatLng(37.335636,-121.885543))
+                .title("21/01/16 Sexual Assualt on 4th").icon(BitmapDescriptorFactory.fromResource(R.drawable.sexualassault)));
 
         mMap.addMarker(new MarkerOptions()
-                .position(ArtBuilding)
-                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+                .position(new LatLng(37.336566,-121.885543))
+                .title("12/06/16 Assualt").icon(BitmapDescriptorFactory.fromResource(R.drawable.sexualassault)));
 
         mMap.addMarker(new MarkerOptions()
-                .position(ArtBuilding)
-                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+                .position(new LatLng(37.338786,-121.885543))
+                .title("03/04/16 Sexual Assault").icon(BitmapDescriptorFactory.fromResource(R.drawable.sexualassault)));
 
         mMap.addMarker(new MarkerOptions()
-                .position(ArtBuilding)
-                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+                .position(new LatLng(37.337766,-121.885563))
+                .title("02/05/17 Sexual Assault").icon(BitmapDescriptorFactory.fromResource(R.drawable.sexualassault)));
 
         mMap.addMarker(new MarkerOptions()
-                .position(ArtBuilding)
-                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+                .position(JoeWest)
+                .title("1/03/16 Sexual Assault").icon(BitmapDescriptorFactory.fromResource(R.drawable.sexualassault)));
 
         mMap.addMarker(new MarkerOptions()
-                .position(ArtBuilding)
-                .title("12/07/16 Solicitation").icon(BitmapDescriptorFactory.fromResource(R.drawable.solicitation)));
+                .position(new LatLng(37.335869,-121.88257))
+                .title("5/21/16 Sexual Assault - A women assualted by a person with black addidas backpack and skateboard ").icon(BitmapDescriptorFactory.fromResource(R.drawable.sexualassault)));
 
+        mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(37.333983,-121.878416))
+                .title("5/21/16 Suicide at Dinning Commons").icon(BitmapDescriptorFactory.fromResource(R.drawable.suicide)));
     }
 
     protected synchronized void buildGoogleApiClient() {

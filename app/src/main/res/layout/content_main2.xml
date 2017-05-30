@@ -52,7 +52,7 @@
             android:layout_marginRight="15dp"
             android:layout_marginTop="50dp"
 
-            android:text="SJSUSafe is an appication which reinforces SJSU alerts by allowing SJSU partrons report an incident, call university police,call ambulance,alert their friends and view the campus map."
+            android:text="SJSUSafe is an application which reinforces SJSU alerts by allowing SJSU patrons report an incident, call university police,call ambulance,alert their friends and view the campus map."
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="25sp"
             android:textStyle="bold" />

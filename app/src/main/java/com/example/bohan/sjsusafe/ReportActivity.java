@@ -54,7 +54,7 @@ public class ReportActivity extends AppCompatActivity {
     private TextView tvFilePath;
     private Button btnUploadPicture, btnSubmitPicture;
     private ImageView ivSelected;
-
+    public String IncidentSeverity;
     private ProgressDialog dialog = null;
     private String imagepath= null;
 
@@ -76,6 +76,7 @@ public class ReportActivity extends AppCompatActivity {
         location = (EditText)findViewById(R.id.ptLocation);
 
 
+        IncidentSeverity="c";
         upLoadServerUri = "http://10.0.2.2/reportIncidentsTwo.php";
 
         getPermissionToAccessExternalStorage();
@@ -123,6 +124,18 @@ public class ReportActivity extends AppCompatActivity {
         String formattedDate = df.format(c.getTime());
 
         String txtLocation = location.getText().toString();
+        if(tvFilePath.getText().toString().contains("assault_word")){
+            IncidentSeverity="Assault";
+        }
+        if(tvFilePath.getText().toString().contains("Suicide")){
+            IncidentSeverity="Suicide";
+        }
+        if(tvFilePath.getText().toString().contains("2gho")){
+            IncidentSeverity="Solicitation";
+        }
+        if(tvFilePath.getText().toString().contains("robbery")){
+            IncidentSeverity="Robbery";
+        }
 
         try {
                 URL url= new URL(regurl);
@@ -134,8 +147,8 @@ public class ReportActivity extends AppCompatActivity {
                 String data= URLEncoder.encode("IncidentType","UTF-8") + "=" + URLEncoder.encode("3","UTF-8")+"&"+
                         URLEncoder.encode("Location","UTF-8") + "=" + URLEncoder.encode(txtLocation,"UTF-8")+"&"+
                         URLEncoder.encode("Date","UTF-8") + "=" + URLEncoder.encode(formattedDate,"UTF-8")+"&"+
-                        URLEncoder.encode("IncidentSeverity","UTF-8") + "=" + URLEncoder.encode("6","UTF-8")+"&"+
-                        URLEncoder.encode("ReporterName","UTF-8") + "=" + URLEncoder.encode("Maitry Shah","UTF-8")+"&"+
+                        URLEncoder.encode("IncidentSeverity","UTF-8") + "=" + URLEncoder.encode(IncidentSeverity,"UTF-8")+"&"+
+                        URLEncoder.encode("ReporterName","UTF-8") + "=" + URLEncoder.encode("Mary Shah","UTF-8")+"&"+
                         URLEncoder.encode("Longitude","UTF-8") + "=" + URLEncoder.encode("-121.882598","UTF-8")+"&"+
                         URLEncoder.encode("Latitude","UTF-8") + "=" + URLEncoder.encode("37.336239","UTF-8")+"&"+
                         URLEncoder.encode("IncidentDetailMessage","UTF-8") + "=" + URLEncoder.encode(msgText,"UTF-8");
@@ -161,15 +174,15 @@ public class ReportActivity extends AppCompatActivity {
                 bufferedReader.close();
                 is.close();
                 httpURLConnection.disconnect();
-
+/*
                 int index = 0;
                 for (int i = response.length()-1; i >1; --i)
                     if (response.charAt(i) == '>' || response.charAt(i) == ';') {
                         index = i+1;
                         break;
                     }
-
-                insertedIncidentId = Integer.parseInt(response.substring(index));
+*/
+                //insertedIncidentId = Integer.parseInt(response.substring(index));
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
